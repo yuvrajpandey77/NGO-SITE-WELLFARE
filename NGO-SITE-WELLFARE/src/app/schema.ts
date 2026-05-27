@@ -18,10 +18,10 @@ export function generateStructuredData() {
     address: {
       "@type": "PostalAddress",
       streetAddress: CONTACT.address,
-      addressLocality: "Noida",
+      addressLocality: "Lucknow",
       addressRegion: "Uttar Pradesh",
       addressCountry: "IN",
-      postalCode: "201301",
+      postalCode: "226011",
     },
     telephone: CONTACT.helpline,
     email: CONTACT.email,

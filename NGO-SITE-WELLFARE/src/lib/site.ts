@@ -34,8 +34,8 @@ export const CONTACT = {
   donationsPhone: "+91 98765 43210",
   donationsHours: "Monday–Friday 10:00 a.m.–5:00 p.m. IST",
   whatsapp: "+919792434641",
-  address: "283/6, Harchandpur, Garhi Kanaura, Manak Nagar, Lucknow, Uttar Pradesh-226011",
-  mapEmbed: "https://www.google.com/maps?q=283/6+Harchandpur+Garhi+Kanaura+Bhank+Nagar+Lucknow+Uttar+Pradesh+226011&output=embed",
+  address: "283/6, Harchandpur, Garhi Kanaura, Manak Nagar, Lucknow UP-226011, India",
+  mapEmbed: "https://www.google.com/maps?q=283/6+Harchandpur+Garhi+Kanaura+Manak+Nagar+Lucknow+Uttar+Pradesh+226011&output=embed",
   bankDetails: {
     name: "Sai Ranju Welfare Society",
     bank: "Central Bank of India",
