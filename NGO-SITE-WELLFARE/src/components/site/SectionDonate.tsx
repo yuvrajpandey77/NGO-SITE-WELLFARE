@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { CONTACT, DONATION_AMOUNTS } from "@/lib/site";
+import { PaymentButton } from "@/components/site/RazorpayButton";
 
 const donationGoals = [
   { raised: 5025000, goal: 10000000, label: "Annual Fundraising Goal" },
@@ -14,6 +16,7 @@ const recentDonors = [
 ];
 
 export function SectionDonate() {
+  const [frequency, setFrequency] = useState<"once" | "monthly">("once");
 
   const progress = (donationGoals[0].raised / donationGoals[0].goal) * 100;
 
@@ -76,23 +79,50 @@ export function SectionDonate() {
                 />
               </div>
 
+              <div className="mt-6 flex justify-center gap-2 bg-white/5 rounded-xl p-1">
+                <button
+                  onClick={() => setFrequency("once")}
+                  className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all ${
+                    frequency === "once"
+                      ? "bg-white text-slate-900 shadow-sm"
+                      : "text-brand-200 hover:text-white"
+                  }`}
+                >
+                  One-Time
+                </button>
+                <button
+                  onClick={() => setFrequency("monthly")}
+                  className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all ${
+                    frequency === "monthly"
+                      ? "bg-white text-slate-900 shadow-sm"
+                      : "text-brand-200 hover:text-white"
+                  }`}
+                >
+                  Monthly
+                </button>
+              </div>
+
               <div className="mt-6 grid grid-cols-3 gap-3">
                 {DONATION_AMOUNTS.filter((a) => a.value !== "custom").map((tier) => (
-                  <div
+                  <PaymentButton
                     key={tier.value}
-                    className="group relative rounded-xl border border-white/15 bg-white/5 p-4 text-center transition-all duration-300 hover:bg-white/10 hover:border-accent-400/50"
+                    amount={Number(tier.value)}
+                    className="group relative rounded-xl border border-white/15 bg-white/5 p-4 text-center transition-all duration-300 hover:bg-white/10 hover:border-accent-400/50 hover:scale-105 hover:shadow-xl flex flex-col items-center justify-center"
                   >
                     <p className="text-xl font-bold text-white group-hover:text-accent-400 transition-colors">
                       {tier.label}
                     </p>
-                  </div>
+                  </PaymentButton>
                 ))}
               </div>
 
               <div className="mt-4">
-                <div className="w-full rounded-xl border border-dashed border-white/20 bg-white/5 px-6 py-4 text-sm text-brand-200 text-center">
-                  Custom Amount — Bank Transfer or QR
-                </div>
+                <PaymentButton
+                  amount={0}
+                  className="w-full rounded-xl border border-dashed border-white/20 bg-white/5 px-6 py-4 text-sm text-brand-200 hover:bg-white/10 hover:border-accent-400/50 transition-all hover:text-accent-400"
+                >
+                  Custom Amount
+                </PaymentButton>
               </div>
 
               <div className="mt-6 flex items-center justify-center gap-4 text-xs text-brand-300">
