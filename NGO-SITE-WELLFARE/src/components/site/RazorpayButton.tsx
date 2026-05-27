@@ -2,12 +2,6 @@
 
 import { useState } from "react";
 
-declare global {
-  interface Window {
-    Razorpay: any;
-  }
-}
-
 export function PaymentButton({ amount, children, className }: any) {
   const [loading, setLoading] = useState(false);
 
@@ -68,7 +62,7 @@ export function PaymentButton({ amount, children, className }: any) {
       },
     };
 
-    const paymentObject = new window.Razorpay(options);
+    const paymentObject = new (window as any).Razorpay(options);
     paymentObject.open();
 
     setLoading(false);
